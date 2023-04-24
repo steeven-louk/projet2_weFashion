@@ -16,11 +16,24 @@
             @include('modules._module')
 
     </head>
-    <body class="antialiased bg-dark">
+    <body class="antialiased text-white bg-dark">
       @include('components.navbar')
+
+        {{-- @yield('content') --}}
+
+
+        <div class="container">
+            <header class="p-5 bg-success">
+                <h1 class="display-2 mx-auto fw-semibold text-uppercase">ceci est le header du site de vente</h1>
+            </header>
+            <span class="result my-3 text-capitalize text-end d-block">result(4)</span>
+        
+            <div class="articleContainer px-2">
+                @include('components.card')
+            </div>
+        </div>
 
 
       @include('components.footer')
-       
     </body>
 </html>

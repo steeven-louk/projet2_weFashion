@@ -20,11 +20,11 @@ class CreateProduitsTable extends Migration
             $table->decimal('prix','8','2');
             $table->enum('tailles',['XS', 'S', 'M', 'L', 'XL']);
             $table->string('image');
-            $table->boolean('visible',['publie','non publie'])->default('publie');
-            // $table->boolean('etat',['en solde','standard'])->default('en solde');
+            $table->enum('statut',['publié','non publié']);
+            $table->enum('etat',['en solde','standard']);
             $table->string('reference', 16);
+            $table->enum('categorie',['homme','femme']);
             $table->boolean('isAdmin')->default(false);
-            $table->string('categories');
             $table->timestamps();
         });
     }

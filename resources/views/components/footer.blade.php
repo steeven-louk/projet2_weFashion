@@ -1,4 +1,4 @@
-<footer class="p-5 bg-dark d-flex flex-wrap justify-content-around text-white fw-semibold">
+<footer class="p-5 mt-5 bg-dark gap-4 d-flex flex-wrap justify-content-around text-white fw-semibold">
     <div class="">
         <h4 class="fw-bold text-uppercase text-underline">informations</h4>
         <ul class="nav flex-column text-capitalize">
