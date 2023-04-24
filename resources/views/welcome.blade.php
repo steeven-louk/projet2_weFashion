@@ -12,12 +12,15 @@
         <!-- Styles -->
 
 
-        <style>
 
             @include('modules._module')
 
     </head>
     <body class="antialiased bg-dark">
-       @include('components.navbar')
+      @include('components.navbar')
+
+
+      @include('components.footer')
+       
     </body>
 </html>
