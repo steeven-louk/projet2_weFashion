@@ -21,3 +21,5 @@ Route::view('/soldes', 'soldes')->name('solde');
 Route::view('/soldes', 'soldes')->name('solde');
 Route::view('/homme', 'categories.homme')->name('homme');
 Route::view('/femme', 'categories.femme')->name('femme');
+
+Route::view('/produit', 'produit')->name('produit');

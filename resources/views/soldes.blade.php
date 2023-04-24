@@ -13,7 +13,9 @@
 
     <section class="bg-danger my-3 p-5" style="height: 150px, width:100%">
         <div class="container">
-            <h1 class="text-center text-uppercase">soldes</h1>
+            <h1 class="text-center text-uppercase">
+                decouvrez les meilleurs produits du moment en solde
+            </h1>
         </div>
     </section>
 
