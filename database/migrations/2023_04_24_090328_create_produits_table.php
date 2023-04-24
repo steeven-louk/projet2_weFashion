@@ -15,7 +15,7 @@ class CreateProduitsTable extends Migration
     {
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
-            $table->string('nom','5', '100');
+            $table->string('nom', '100');
             $table->text('description');
             $table->decimal('prix','8','2');
             $table->enum('tailles',['XS', 'S', 'M', 'L', 'XL']);
@@ -23,7 +23,8 @@ class CreateProduitsTable extends Migration
             $table->enum('statut',['publié','non publié']);
             $table->enum('etat',['en solde','standard']);
             $table->string('reference', 16);
-            $table->enum('categorie',['homme','femme']);
+            $table-> unsignedBigInteger('categorie_id');
+            $table-> foreign('categorie_id')->references('id')->on('categories');
             $table->boolean('isAdmin')->default(false);
             $table->timestamps();
         });
