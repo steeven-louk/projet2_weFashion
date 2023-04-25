@@ -11,18 +11,19 @@
 <body>
     @include('components.navbar')
 
-<span class="my-5">home/produit/habit 15</span>
 
 <section>
     <div class="container">
+        <div class="my-2  text-uppercase fw-semibold"><span><a href="/">home</a> / produit/ {{ $product->nom}}</span></div>
+
         <div class="row">
             <div class="col-md-6">
-                <img src="{{ asset('images/femmes/1.jpg') }}" alt="">
+                <img class="rounded img-fluid" src="{{ asset('assets/images/' .$product->image) }}" alt="{{ $product->nom}}">
             </div>
             <div class="col-md-6 justify-content-center align-items-center d-flex flex-column text-start">
-                <h1 class="text-capitalize">T-SHIRT nom du produit</h1>
-                <span class="fw-semibold">40.00$</span>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque consectetur ipsa iste quas sunt quisquam facere eveniet voluptatibus minus voluptatum.</p>
+                <h1 class="text-capitalize">{{ $product->nom}}</h1>
+                <span class="fw-semibold">{{ $product->prix}}$</span>
+                <p>{{ $product->description}}</p>
                 <button class="btn btn-primary">add to cart</button>
             </div>
         </div>
