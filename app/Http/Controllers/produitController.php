@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\produit;
 use Illuminate\Http\Request;
 
@@ -28,9 +29,23 @@ class produitController extends Controller
     public function soldes()
     {
         //
-        $solde = produit::where('etat', 'en solde')->orderBy('desc','created_at')->paginate(6);
-        dd($solde);
-        return view('solde', compact('solde'));
+        $soldes = produit::where('etat', 'en solde')->orderBy('created_at', 'desc')->paginate(6);
+        return view('soldes', compact('soldes'));
+    }
+
+    public function hommes()
+    {
+        //
+        $produitsHomme = produit::where('categorie_id', 2)->orderBy('created_at', 'desc')->paginate(6);
+        // dd($produitsHomme);
+        return view('categories.homme', compact('produitsHomme'));
+    }
+
+    public function femmes()
+    {
+        //
+        $produitsFemme = produit::where('categorie_id', 1)->orderBy('created_at', 'desc')->paginate(6);
+        return view('categories.femme', compact('produitsFemme'));
     }
 
     /**

@@ -28,7 +28,7 @@ class ProduitSeeder extends Seeder
                 'statut' => $faker->randomElement(['publié', 'non publié']),
                 'etat' => $faker->randomElement(['en solde', 'standard']),
                 'reference' => $faker->unique()->regexify('[A-Za-z0-9]{16}'),
-                'categorie_id' => 2,
+                'categorie_id' => 1,
             ]);
         }
         for ($i = 0; $i < 40; $i++) {
@@ -41,6 +41,7 @@ class ProduitSeeder extends Seeder
                 'statut' => $faker->randomElement(['publié', 'non publié']),
                 'etat' => $faker->randomElement(['en solde', 'standard']),
                 'reference' => $faker->unique()->regexify('[A-Za-z0-9]{16}'),
+                // 'image'=> $faker->randomElement(['homme-'.$faker->numberBetween(1,10).'.jpg','image' => 'femme-'.$faker->numberBetween(1,10).'.jpg']),
                 'categorie_id' => 2,
             ]);
         }
