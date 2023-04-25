@@ -1,0 +1,23 @@
+.femme{
+    
+    header{
+        height: 30em;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+
+        .left{
+            display: grid;
+            place-items: center;
+        }
+
+        .right{
+            img{
+                object-fit: cover;
+                position: relative;
+                width: 100%;
+                bottom: 0px;
+            }
+        }
+    }
+}

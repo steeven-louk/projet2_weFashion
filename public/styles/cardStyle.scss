@@ -1,0 +1,42 @@
+.card{
+    position: relative;
+    color: #000;
+    text-align: center;
+    letter-spacing: 1px;
+    overflow: hidden;
+    transition: transform .3s ease-in-out;
+
+    &:hover{
+        transform: scale(1.1);
+        z-index: 5;
+    }
+
+    .state >     span{
+        position: absolute;
+        background: #66EB9A;
+        padding-top: 10px;
+        height: 2.6em;
+        width: 47%;
+        color: #fff;
+        left: -20px;
+        font-weight: bold;
+        text-align: center;
+        
+        transform: translateX(-15px) rotate(-30deg);
+    }
+
+    img{
+        object-fit: cover;
+        width: 100%;
+    }
+    .card-body{
+        .card-title{
+            font-size: 25px;
+        }
+        .card-text{
+            font-size: 20px;
+        }
+    }
+
+
+}

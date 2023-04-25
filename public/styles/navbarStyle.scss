@@ -1,0 +1,30 @@
+.navbar{
+    background: #1A1A1A;
+    border-bottom: 3px solid #ccc;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    .active{color: #66EB9A!important;}
+
+   .navbar-brand{
+    color:  #66EB9A;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 0px 2px #ccc;
+    font-size: 1.5em;
+   }
+
+   
+
+   .navbar-collapse> .navbar-nav .nav-item {
+
+       a{
+           color: #fff;
+           font-size: 1.5em;
+            transition: color .4s;
+ 
+           &:hover{
+               color: #66EB9A!important;
+           }
+   }}
+}

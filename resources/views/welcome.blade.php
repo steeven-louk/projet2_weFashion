@@ -11,9 +11,8 @@
 
         <!-- Styles -->
 
-
-
-            @include('modules._module')
+        
+      @include('modules._module')
 
     </head>
     <body class="antialiased text-white bg-dark">

@@ -37,7 +37,6 @@ class produitController extends Controller
     {
         //
         $produitsHomme = produit::where('categorie_id', 2)->orderBy('created_at', 'desc')->paginate(6);
-        // dd($produitsHomme);
         return view('categories.homme', compact('produitsHomme'));
     }
 
