@@ -18,13 +18,14 @@ class CreateProduitsTable extends Migration
             $table->string('nom', '100');
             $table->text('description');
             $table->decimal('prix','8','2');
-            $table->enum('tailles',['XS', 'S', 'M', 'L', 'XL']);
             $table->string('image');
             $table->enum('statut',['publié','non publié']);
             $table->enum('etat',['en solde','standard']);
             $table->string('reference', 16);
             $table-> unsignedBigInteger('categorie_id');
             $table-> foreign('categorie_id')->references('id')->on('categories');
+            $table-> unsignedBigInteger('taille_id');
+            $table-> foreign('taille_id')->references('id')->on('tailles');
             $table->boolean('isAdmin')->default(false);
             $table->timestamps();
         });

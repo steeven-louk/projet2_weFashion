@@ -12,19 +12,35 @@
     @include('components.navbar')
 
 
-<section>
+<section class="ProductDetail">
     <div class="container">
-        <div class="my-2  text-uppercase fw-semibold"><span><a href="/">home</a> / produit/ {{ $product->nom}}</span></div>
-
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb fw-semibold">
+              <li class="breadcrumb-item"><a class="underline" href="/">Home</a></li>
+              <li class="breadcrumb-item"><a class="underline" href="/produit">Produit</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ $product->nom }}</li>
+            </ol>
+          </nav>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 left">
                 <img class="rounded img-fluid" src="{{ asset('assets/images/' .$product->image) }}" alt="{{ $product->nom}}">
             </div>
-            <div class="col-md-6 justify-content-center align-items-center d-flex flex-column text-start">
-                <h1 class="text-capitalize">{{ $product->nom}}</h1>
-                <span class="fw-semibold">{{ $product->prix}}$</span>
+            <div class="col-md-6 right p-5 d-flex flex-column text-start">
+                <span class="reference fw-semibold ">référence : <em class="text-uppercase">{{ $product->reference }}</em></span>
+                <h1 class="text-capitalize my-3">{{ $product->nom}}</h1>
+                <span class="fw-semibold prix">{{ $product->prix}}$</span>
                 <p>{{ $product->description}}</p>
-                <button class="btn btn-primary">add to cart</button>
+                <div class="form-group d-flex">
+                    <button class="btn">add to card</button>
+                    <select name="size">
+                        <option>Size</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>

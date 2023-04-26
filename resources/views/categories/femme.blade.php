@@ -27,15 +27,13 @@
             <div class="card-body">
                 <h4 class="card-title">{{ $item->nom }}</h4>
                 <p class="card-text fw-semibold">{{ $item->prix }} €</p>
-                <ul class="nav gap-3">
-                    <li class="p-2 rounded text-semibold bg-danger"><span>{{ $item->tailles }}</span></li>
-                </ul>
+                
             </div>
         </a>
         </div>
         @endforeach
     </div>
     <br>
-<div class="mx-auto d-block">{{ $produitsFemme->links() }}</div>  
+    <div class="d-flex align-items-center justify-content-center mt-5">{{ $produitsFemme->links() }}</div> 
 
 @endsection

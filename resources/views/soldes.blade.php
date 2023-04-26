@@ -33,6 +33,6 @@
             @endforeach
         </div>
         <br>
-  <div class="mx-auto d-block">{{ $soldes->links() }}</div>  
+  <div class="d-flex align-items-center justify-content-center mt-3">{{ $soldes->links() }}</div>  
 
 @endsection
