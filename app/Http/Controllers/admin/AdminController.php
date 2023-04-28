@@ -86,13 +86,15 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function delete($id)
-    // {
-    //     //
-    //     $getProduct = produit::find($id)->get();
-    //     if($getProduct){
-    //         $getProduct->delete();
-    //         return redirect()->back();
-    //     }
-    // }
+    public function deleteProduct($id)
+    {
+        //
+        $getProduct = produit::find($id);
+        
+        if(!$getProduct){
+            return response()->json(['error'=>'Product not found'], 404);
+        }
+        $getProduct->delete();
+        return redirect()->back()->with('message', 'produit supprimer avec success');
+    }
 }
