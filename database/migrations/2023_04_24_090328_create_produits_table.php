@@ -26,7 +26,6 @@ class CreateProduitsTable extends Migration
             $table-> foreign('categorie_id')->references('id')->on('categories');
             $table-> unsignedBigInteger('taille_id');
             $table-> foreign('taille_id')->references('id')->on('tailles');
-            $table->boolean('isAdmin')->default(false);
             $table->timestamps();
         });
     }

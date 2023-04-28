@@ -7,6 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <form action="">
+        <div class="form-group">
+            <input type="email">
+        </div>
+        <div class="form-group">
+            <input type="password">
+        </div>
+    </form>
 </body>
 </html>

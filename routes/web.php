@@ -24,10 +24,9 @@ Route::get('/femme', [produitController::class, 'femmes'])->name('femme');
 
 
 route::get('/admin', [AdminController::class, 'index'])->name('dashboard');
+route::get('/admin/ajouter', [AdminController::class, 'ajouterProduit'])->name('admin.ajouterProduit');
+// route::get('/admin/ajouter', [AdminController::class, 'ajouterProduit'])->name('ajouterProduit');
 Route::get('/admin/homme',[AdminController::class, 'getHommesProduct'])->name('admin.produitsHomme');
 Route::get('/admin/femme',[AdminController::class, 'getFemmesProduct'])->name('admin.produitsFemme');
 Route::get('/admin/deleleProduct/{id}',[AdminController::class, 'deleteProduct'])->name('admin.produitsDelete');
-
-Route::get('/admin/ajouter', function(){
-    return view('admin2.ajouterProduit');
-});
+Route::post('/admin/create}',[AdminController::class, 'create'])->name('create');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Models\produit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Tailles;
 
 class AdminController extends Controller
 {
@@ -13,10 +15,16 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     
     public function index()
     {
         $data = produit::paginate(15)->all();
-        return view('admin.dashboard', compact(('data')));
+        $getWomenProductCount = produit::where('categorie_id',1)->count();
+        $getMenProductCount = produit::where('categorie_id',2)->count();
+        $getMenSoldCount = produit::where('etat','en solde')->count();
+        // dd($getMenSoldCount);
+        return view('admin.dashboard', compact('data','getWomenProductCount','getMenProductCount','getMenSoldCount'));
     }
 
     
@@ -39,9 +47,30 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+   
+
+        $data = new produit;
+        $image = $request->file('image');
+        $imagename = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/assets/images');
+        $image->move($destinationPath, $imagename);
+       
+
+       
+           $data->nom = $request->nom;
+           $data->description = $request->description;
+           $data->prix = $request->prix;
+           $data->categorie_id = $request->categorie;
+           $data->taille_id = $request->taille;
+           $data->etat = $request->etat;
+           $data->image = $imagename;
+           $data->statut = $request->statut;
+           $data->reference = $request->reference;
+       
+        $data->save();
+        return redirect()->back()->with('message','le produit a été ajouter avec success');
     }
 
     /**
@@ -50,9 +79,12 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function ajouterProduit()
     {
-        //
+        $taille = Tailles::all();
+        $categories = Category::all();
+        
+        return view('admin.ajouterProduit', ['taille'=>$taille,'categorie'=>$categories]);
     }
 
 
