@@ -1,14 +1,15 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-    <a class="sidebar-brand brand-logo" href="index.html"><img src="admin/assets/images/logo.svg" alt="logo" /></a>
-    <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="admin/assets/images/logo-mini.svg" alt="logo" /></a>
+
+    <span class="sidebar-brand brand-logo text-capitalize fw-bold">we fashion</span>
+
   </div>
-  <ul class="nav">
+  <ul class="nav gap-2">
     <li class="nav-item nav-category">
       <span class="nav-link">Navigation</span>
     </li>
     <li class="nav-item menu-items">
-      <a class="nav-link" href="{{ route('dashboard') }}">
+      <a class="nav-link @if(Route::currentRouteName() == 'dashboard') active @endif" href="{{ route('dashboard') }}"" >
         <span class="menu-icon">
           <i class="mdi mdi-speedometer"></i>
         </span>
@@ -16,7 +17,7 @@
       </a>
     </li>
     <li class="nav-item menu-items">
-      <a class="nav-link" href="{{ route('admin.produitsHomme') }}">
+      <a class="nav-link @if(Route::currentRouteName() == 'admin.produitsHomme') active @endif" href="{{ route('admin.produitsHomme') }}" >
         <span class="menu-icon">
           <i class="mdi mdi-speedometer"></i>
         </span>

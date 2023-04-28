@@ -34,7 +34,7 @@
               <tr>
                 <td>{{ $item->id }}</td>
                 <td> {{ $item->nom }} </td>
-                <td> {{ $item->prix }} $</td>
+                <td> {{ $item->prix }} €</td>
                 <td> {{ $item->image }}</td>
                 <td> {{ $item->statut }} </td>
                 <td> {{ $item->etat }} </td>

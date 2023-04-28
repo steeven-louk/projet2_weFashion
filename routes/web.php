@@ -30,3 +30,4 @@ Route::get('/admin/homme',[AdminController::class, 'getHommesProduct'])->name('a
 Route::get('/admin/femme',[AdminController::class, 'getFemmesProduct'])->name('admin.produitsFemme');
 Route::get('/admin/deleleProduct/{id}',[AdminController::class, 'deleteProduct'])->name('admin.produitsDelete');
 Route::post('/admin/create}',[AdminController::class, 'create'])->name('create');
+Route::get('/admin/modifierProduit/{id}',[AdminController::class,'edit'])->name('edit');

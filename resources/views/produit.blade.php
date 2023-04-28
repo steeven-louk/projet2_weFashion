@@ -28,7 +28,7 @@
             <div class="col-md-6 right p-5 d-flex flex-column text-start">
                 <span class="reference fw-semibold ">référence : <em class="text-uppercase">{{ $product->reference }}</em></span>
                 <h1 class="text-capitalize my-3">{{ $product->nom}}</h1>
-                <span class="fw-semibold prix">{{ $product->prix}}$</span>
+                <span class="fw-semibold prix">{{ $product->prix}} €</span>
                 <p>{{ $product->description}}</p>
                 <div class="form-group d-flex">
                     <button class="btn">add to card</button>

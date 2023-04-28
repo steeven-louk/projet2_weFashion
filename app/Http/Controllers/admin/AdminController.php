@@ -97,7 +97,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Produit = produit::findOrFail($id);
+
+        return view('admin.modifierProduit', compact('Produit'));
     }
 
     /**
