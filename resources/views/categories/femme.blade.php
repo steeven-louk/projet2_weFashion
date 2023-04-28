@@ -12,7 +12,7 @@
             </div>
             <div class="col-md-6 right">
                 <img src="{{ asset('./assets/banners/banner-femme.png') }}" alt="">
-            </div>
+            </div> 
         </div>
     </header>
 </section>

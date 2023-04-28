@@ -32,13 +32,12 @@
                 <p>{{ $product->description}}</p>
                 <div class="form-group d-flex">
                     <button class="btn">add to card</button>
+                    
                     <select name="size">
                         <option>Size</option>
-                        <option value="XS">XS</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
+                        @foreach ($tailles as $item)
+                            <option value="{{ $item->id }}">{{ $item->tailles }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

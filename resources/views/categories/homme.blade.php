@@ -2,19 +2,20 @@
 
 @section('content')
  
-<section class="bg-danger my-3 p-5" style="height: 150px, width:100%">
-    <div class="container">
+<section class="bg-danger mb-5">
+
+    <header class="container">
         <div class="row">
-            <div class="col-md-6">
-                <p class="text-start text-uppercase">
+            <div class="col-md-6 left justify-center d-flex align-content-center">
+                <p class="text-start my-auto text-uppercase h4">
                     Adoptez un style élégant avec notre nouvelle collection de chemises pour homme. Fabriquées avec des matériaux de haute qualité, nos chemises sont parfaites pour le bureau ou une soirée décontractée. Découvrez notre gamme de couleurs et motifs pour trouver la chemise parfaite pour vous. À partir de $49,99 seulement.
                 </p>
             </div>
-            <div class="col-md-6 bg-primary">
-                <span>img</span>
-            </div>
+            <div class="col-md-6 right">
+                <img src="{{ asset('./assets/banners/banner-homme.png') }}" width="100%" alt="banner">
+            </div> 
         </div>
-    </div>
+    </header>
 </section>
 
 <span class="result my-3 text-capitalize text-end pe-5 d-block">result({{ $produitsHomme->count()}})</span>

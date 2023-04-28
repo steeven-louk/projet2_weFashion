@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\produit;
+use App\Models\Tailles;
 use Illuminate\Http\Request;
 
 class produitController extends Controller
@@ -17,7 +18,6 @@ class produitController extends Controller
     {
         //
         $product = produit::where('statut', 'publié')->inRandomOrder()->paginate(6);
-
         return view('home', compact('product'));
     }
 
@@ -77,10 +77,11 @@ class produitController extends Controller
     public function show($id)
     {
        $product=  produit::findOrFail($id);
+       $tailles = Tailles::all();
         if(!$product){
             abort(404);
         }
-        return view('produit', ['product' => $product]);
+        return view('produit', ['product' => $product, 'tailles'=> $tailles]);
     }
 
     /**

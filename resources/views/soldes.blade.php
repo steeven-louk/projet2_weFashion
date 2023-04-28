@@ -2,13 +2,19 @@
 
 @section('content')
 
-    <section class="bg-danger my-3 p-5" style="height: 150px, width:100%">
-        <div class="container">
-            <h1 class="text-center fw-bold text-uppercase display-2">
-                special deal
-            </h1>
-            <span>limited time offer</span>
-        </div>
+    <section class="bg-danger solde mb-5">
+        <header class="container">
+            <div class="row">
+                <div class="col-md-6 left">
+                    <h1 class="text-start my-auto text-uppercase">
+                        decouvrez les meilleurs produits femme du moment en solde
+                    </h1>
+                </div>
+                <div class="col-md-6 right">
+                    <img src="{{ asset('./assets/banners/banner-solde.png') }}" alt="banner">
+                </div> 
+            </div>
+        </header>
     </section>
 
 

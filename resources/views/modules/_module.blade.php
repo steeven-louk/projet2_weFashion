@@ -10,5 +10,6 @@
 <link rel="stylesheet" href="{{ asset('styles/globalStyle.css') }}">
 <link rel="stylesheet" href="{{ asset('styles/cardStyle.css') }}">
 <link rel="stylesheet" href="{{ asset('styles/femmeStyle.css') }}">
+<link rel="stylesheet" href="{{ asset('styles/soldeStyle.css') }}">
 <link rel="stylesheet" href="{{ asset('styles/produitDetailStyle.css') }}">
 
