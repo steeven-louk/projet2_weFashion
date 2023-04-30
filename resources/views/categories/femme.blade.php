@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.clientLayout')
 
 @section('content')
  
@@ -11,7 +11,7 @@
                 </p>
             </div>
             <div class="col-md-6 right">
-                <img src="{{ asset('./assets/banners/banner-femme.png') }}" alt="">
+                <img src="{{ asset('./assets/banners/banner-femme.png') }}" alt="banner">
             </div> 
         </div>
     </header>
@@ -23,10 +23,10 @@
     @foreach ($produitsFemme as $item)
         <div class="card col-md-3 p-0">
             <a href="produit/{{ $item->id }}">
-            <img class="card-img-top" height="450" src="{{asset('assets/images/' . $item->image)}}" alt="">
+            <img class="card-img-top" height="450" src="{{asset('assets/images/' . $item->image)}}" alt="{{ $item->name }}">
             <div class="card-body">
-                <h4 class="card-title">{{ $item->nom }}</h4>
-                <p class="card-text fw-semibold">{{ $item->prix }} €</p>
+                <h4 class="card-title">{{ $item->name }}</h4>
+                <p class="card-text fw-semibold">{{ $item->price }} €</p>
                 
             </div>
         </a>

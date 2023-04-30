@@ -10,16 +10,20 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <!-- Styles -->
-
-        
-      @include('modules._module')
-
+        @include('modules._module')
+        <!-- Styles -->
     </head>
+
     <body class="antialiased text-white bg-dark">
-      @include('components.navbar')
+      {{-- import de la navbar --}}
+      @include('components.navbar') 
 
+      {{-- contenant des pages du client --}}
         @yield('content')
+      {{-- contenant des pages du client --}}
 
+      
+        {{-- import du footer --}}
       @include('components.footer')
     </body>
 </html>

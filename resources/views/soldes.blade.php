@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.clientLayout')
 
 @section('content')
 
@@ -23,16 +23,14 @@
             <div class="card col-md-3 p-0">
                 <a href="produit/{{ $item->id }}">
                 <div class="state">
-                    <span>{{ $item->etat }}</span>
+                    <span>{{ $item->state }}</span>
                 </div>
 
-                <img class="card-img-top" height="450" src="{{asset('assets/images/' . $item->image)}}" alt="{{ $item->nom }}">
+                <img class="card-img-top" height="450" src="{{asset('assets/images/' . $item->image)}}" alt="{{ $item->name }}">
                 <div class="card-body">
-                    <h4 class="card-title">{{ $item->nom }}</h4>
-                    <p class="card-text fw-semibold">{{ $item->prix }} €</p>
-                    <ul class="nav gap-3">
-                        <li class="p-2 rounded text-semibold bg-danger"><span>{{ $item->tailles }}</span></li>
-                    </ul>
+                    <h4 class="card-title">{{ $item->name }}</h4>
+                    <p class="card-text fw-semibold">{{ $item->price }} €</p>
+                
                 </div>
             </a>
             </div>

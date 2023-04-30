@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\produit;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\produit;
 use App\Models\Produit_Tailles;
 use App\Models\Tailles;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -18,35 +18,38 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     
     public function index()
     {
-        $data = produit::paginate(15)->all();
-        $getWomenProductCount = produit::where('category_id',1)->count();
-        $getMenProductCount = produit::where('category_id',2)->count();
-        $getProdoductSoldCount = produit::where('state','en solde')->count();
-        return view('admin.dashboard', compact('data','getWomenProductCount','getMenProductCount','getProdoductSoldCount'));
+        
+        $data = produit::paginate(15)->all();//recuperation de tout les produits de la base de donnée
+        $getWomenProductCount = produit::where('category_id', 1)->count();//recuperation du nombre de produit pour femme
+        $getMenProductCount = produit::where('category_id', 2)->count();//recuperation du nombre de produit pour homme
+        $getProductSoldCount = produit::where('state', 'en solde')->count();//recuperation du nombre de produit en solde
+
+        return view('admin.dashboard', compact('data', 'getWomenProductCount', 'getMenProductCount', 'getProductSoldCount'));
     }
 
-    
-    public function getHommesProduct()
+    public function getMenProduct()
     {
-        $data = produit::where('category_id',2)->orderBy('created_at', 'desc')->paginate(15);
+        //recuperation des produits de la categories homme
+        $data = produit::where('category_id', 2)->orderBy('created_at', 'desc')->paginate(15);
         return view('admin.produitsHomme', compact('data'));
     }
 
-    public function getFemmesProduct()
+    public function getWomenProduct()
     {
+        //recuperation des produits de la categories femme
         $data = produit::where('category_id', 1)->orderBy('created_at', 'desc')->paginate(15);
         return view('admin.produitsFemme', compact('data'));
     }
 
-    public function ajouterProduit()
+    public function getAddPage()
     {
+        //recuperation des tailles et categoris
         $size = Tailles::all();
         $categories = Category::all();
-        
-        return view('admin.ajouterProduit', ['taille'=>$size,'categorie'=>$categories]);
+
+        return view('admin.ajouterProduit', ['taille' => $size, 'categorie' => $categories]);
     }
 
 
@@ -55,58 +58,58 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
-    {//nom add product
-   
+    public function addProduct(Request $request)
+    { //nom add product
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            // 'categorie_id' => 'required',
             'price' => 'required|numeric|min:10',
             'description' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tailles' => 'required|array',
-            'tailles.*' => 'integer|exists:tailles,id'
+            'tailles.*' => 'integer|exists:tailles,id',
         ]);
 
+        //verification des erreur de validation
         if ($validator->fails()) {
             return redirect()
                 ->back()
                 ->withErrors($validator)
                 ->withInput();
         }
-    
-        $data = new produit;
 
+        
         $image = $request->file('image');
-        $imageName = time().'.'.$image->getClientOriginalExtension();
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
         $destinationPath = public_path('/assets/images');
         $image->move($destinationPath, $imageName);
-
+        
         // Création du produit
- 
+        $data = new produit;
 
-    // Ajout des tailles sélectionnées au produit
+        $data->name = $request->name;
+        $data->description = $request->description;
+        $data->price = $request->price;
+        $data->category_id = $request->categorie;
+        $data->state = $request->state;
+        $data->image = $imageName;
+        $data->status = $request->status;
+        $data->reference = $request->reference;
 
-    // Redirection vers la page de détails du produit
+        $productSizes = [];
 
-           $data->name = $request->name;
-           $data->description = $request->description;
-           $data->price = $request->price;
-           $data->category_id = $request->categorie;
-           $data->state = $request->state;
-           $data->image = $imageName;
-           $data->status = $request->status;
-           $data->reference = $request->reference;
+        foreach ($request->tailles as $sizeId) {
+            $produitSizes[] = ['produit_id' => $data->id, 'tailles_id' => $sizeId];
+            Produit_Tailles::insert($productSizes); // Ajout des tailles sélectionnées au produit
+        }
 
-           $productSizes = [];
-    foreach ($request->tailles as $sizeId) {
-        $produitSizes[] = ['produit_id' => $data->id, 'tailles_id' => $sizeId];
-        Produit_Tailles::insert($productSizes);
+        $data->save(); //sauvegarde du produit
+
+        // Redirection vers la page de détails du produit
+        return redirect()->back()->with('message', 'le produit a été ajouter avec success');
     }
 
-        $data->save();
-        return redirect()->back()->with('message','le produit a été ajouter avec success');
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -114,13 +117,16 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function getEditPage($id)
     {
-        $Produit = produit::findOrFail($id);
-        $taille = Tailles::all();
-        $categories = Category::all();
-        return view('admin.modifierProduit',['Produit'=>$Produit,'taille'=>$taille,'categorie'=>$categories]);
+
+        $product = produit::findOrFail($id); //recuperation d'un seul produit
+        $size = Tailles::all(); //recuperation de toute les tailles
+        $categories = Category::all(); //recuperation de toutes les categories
+        return view('admin.modifierProduit', ['Produit' => $product, 'taille' => $size, 'categorie' => $categories]);
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -129,24 +135,26 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateProduct(Request $request, $id)
     {
-        //
+        //recuperation du produit
         $produit = Produit::findOrFail($id);
 
-     $request->validate([
+        //methode de validation
+        $request->validate([
             'name' => 'required|string|min:5|max:100',
             'description' => 'required|string',
             'price' => 'required|numeric',
-            'reference' => 'required|string|size:16|unique:produits,reference,'.$produit->id,
+            'reference' => 'required|string|size:16|unique:produits,reference,' . $produit->id,
         ]);
 
-       if ($request->hasFile('image')) {
+        //verifier si l'image existe
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/assets/images');
             $image->move($destinationPath, $imageName);
-            $produit->image= $imageName;
+            $produit->image = $imageName;
         }
 
         $produit->name = $request->name;
@@ -157,15 +165,13 @@ class AdminController extends Controller
         $produit->state = $request->state;
         $produit->status = $request->status;
         $produit->reference = $request->reference;
-    
+
         $produit->updated_at = now(); // On met à jour la date de mise à jour
 
         $produit->save();
-     
-     return redirect()->route('edit', ['id' => $id])->with('success', 'Produit modifié avec succès.');
-}
 
-    
+        return redirect()->route('dashboard')->with('success', 'Produit modifié avec succès.');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -175,11 +181,17 @@ class AdminController extends Controller
      */
     public function deleteProduct($id)
     {
-        //
+        //recuperation puis suppression du produit
         $getProduct = produit::findOrFail($id);
-        
-        if(!$getProduct){
-            return response()->json(['error'=>'Product not found'], 404);
+
+        //verifier si l'image existe puis la supprimer
+        if(file_exists(public_path('/assets/images/'.$getProduct->image))){
+            unlink(public_path('/assets/images/'.$getProduct->image));
+        }
+
+        //verifier si le produit existe
+        if (!$getProduct) {
+            return response()->json(['error' => 'Product not found'], 404);
         }
         $getProduct->delete();
         return redirect()->back()->with('message', 'produit supprimer avec success');

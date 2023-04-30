@@ -5,41 +5,44 @@ use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\produitController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 
-Route::get('/', [produitController::class, 'index'])->name('home');
-Route::get('/produit/{id}', [produitController::class, 'show']);
-Route::get('/soldes', [produitController::class, 'soldes'])->name('solde');
-Route::get('/homme', [produitController::class, 'hommes'])->name('homme');
-Route::get('/femme', [produitController::class, 'femmes'])->name('femme');
+// CLIENT ROUTES
+
+    Route::get('/', [produitController::class, 'index'])->name('home');
+    Route::get('/produit/{id}', [produitController::class, 'getProduct']);
+    Route::get('/soldes', [produitController::class, 'getSales'])->name('solde');
+    Route::get('/homme', [produitController::class, 'getMenProducts'])->name('homme');
+    Route::get('/femme', [produitController::class, 'getWomenProducts'])->name('femme');
+
+// CLIENT ROUTES
 
 
 
+// AUTHENTIFICATION ROUTES
+
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/login/connection', [AuthController::class, 'connection'])->name('connection');
+
+// AUTHENTIFICATION ROUTES
 
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login/connection', [LoginController::class, 'connection'])->name('connection');
+// ADMIN ROUTES
 
-Route::group(['middleware'=>['admin']], function(){
+Route::group(['middleware' => ['admin']], function () {
 
-    Route::get('/admin', [AdminController::class, 'index'])->name('dashboard');
-    Route::get('/admin/ajouter', [AdminController::class, 'ajouterProduit'])->name('admin.ajouterProduit');
+    Route::get('/admin', [AdminController::class, 'index'])->name('dashboard'); //affiche de la page d'acceuil
+    Route::get('/admin/homme', [AdminController::class, 'getMenProduct'])->name('admin.produitsHomme'); //affichage de la page des produit pour homme
+    Route::get('/admin/femme', [AdminController::class, 'getWomenProduct'])->name('admin.produitsFemme'); //affichage de la page des produit pour femme
 
-    Route::get('/admin/homme',[AdminController::class, 'getHommesProduct'])->name('admin.produitsHomme');
-    Route::get('/admin/femme',[AdminController::class, 'getFemmesProduct'])->name('admin.produitsFemme');
+    // CRUD
+    Route::get('/admin/ajouter', [AdminController::class, 'getAddPage'])->name('admin.ajouterProduit'); //affichage de la page d'ajout de produit
+    Route::get('/admin/deleleProduct/{id}', [AdminController::class, 'deleteProduct'])->name('admin.produitsDelete'); //suppression du produit
+    Route::get('/admin/modifierProduit/{id}', [AdminController::class, 'getEditPage'])->name('edit'); //affichage de la page de mise a jour
+    Route::post('/admin/create}', [AdminController::class, 'addProduct'])->name('addProduct'); //fonction d'ajout de produit
+    Route::post('/admin/updateProduit/{id}', [AdminController::class, 'updateProduct'])->name('update'); //mise a jour du produit
+    // CRUD
 
-    Route::get('/admin/deleleProduct/{id}',[AdminController::class, 'deleteProduct'])->name('admin.produitsDelete');
-    Route::get('/admin/modifierProduit/{id}',[AdminController::class,'edit'])->name('edit');
-    Route::post('/admin/create}',[AdminController::class, 'create'])->name('create');
-    Route::post('/admin/updateProduit/{id}',[AdminController::class,'update'])->name('update');
 });
+
+// CLIENT ROUTES

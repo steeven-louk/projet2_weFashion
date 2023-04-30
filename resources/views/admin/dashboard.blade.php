@@ -3,7 +3,7 @@
 @section('adminContent')
     <div class="content-wrapper">
 
-        <div class="row">
+        <div class="row mx-auto justify-content-center">
             <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -40,16 +40,16 @@
                         <div class="row">
                             <div class="col-9">
                                 <div class="d-flex align-items-center align-self-start">
-                                    <h3 class="mb-0">{{ $getProdoductSoldCount }}</h3>
+                                    <h3 class="mb-0">{{ $getProductSoldCount }}</h3>
                                 </div>
                             </div>
 
                         </div>
-                        <h6 class="text-muted font-weight-normal">Total de solde pour homme</h6>
+                        <h6 class="text-muted font-weight-normal">Total de produit soldé</h6>
                     </div>
                 </div>
             </div>
-           
+
         </div>
 
         <div class="row ">
@@ -59,7 +59,6 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         {{ session()->get('message') }}
                     </div>
-
                 @endif
                 <div class="card">
                     <div class="card-body">
@@ -93,31 +92,37 @@
                                                     class="badge badge-outline-success">Editer</a>
                                             </td>
                                             <td>
-                                              <button class="badge badge-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $item->id }}">delete</button>
-                                                    <!-- Modal de confirmation de suppression -->
-<div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Êtes-vous sûr de vouloir supprimer ce produit ?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-          <form method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Supprimer</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+                                                <button class="badge badge-outline-danger" data-toggle="modal"
+                                                    data-target="#deleteModal{{ $item->id }}">delete</button>
+                                                <!-- Modal de confirmation de suppression -->
+                                                <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="deleteModalLabel">Confirmation
+                                                                    de suppression</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Êtes-vous sûr de vouloir supprimer ce produit ?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Annuler</button>
+                                                                <form method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger">Supprimer</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.clientLayout')
 
 @section('content')
     <section class="homePage">
@@ -17,10 +17,10 @@
                     <div class="card col-md-3 p-0" id="produit">
                         <a href="produit/{{ $item->id }}">
                             <img class="card-img-top" height="450" src="{{ asset('assets/images/' . $item->image) }}"
-                                alt="">
+                                alt="{{ $item->name }}">
                             <div class="card-body">
-                                <h4 class="card-title">{{ $item->nom }}</h4>
-                                <p class="card-text fw-semibold">{{ $item->prix }} €</p>
+                                <h4 class="card-title">{{ $item->name }}</h4>
+                                <p class="card-text fw-semibold">{{ $item->price }} €</p>
                             </div>
                         </a>
                     </div>

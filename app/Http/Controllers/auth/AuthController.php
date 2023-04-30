@@ -15,6 +15,7 @@ class LoginController extends Controller
      */
     public function index()
     {
+        //affichage de la page login
         return view('admin.auth.login');
     }
 
@@ -25,6 +26,7 @@ class LoginController extends Controller
      */
     public function connection(Request $request)
     {
+        //recuperation des données des champs
         $credentials = $request->only('email','password');
 
         if(Auth::attempt($credentials)){
@@ -35,30 +37,27 @@ class LoginController extends Controller
                 return redirect()->intended('/admin',302);
             }
 
-            //L'utilisateur n'est pas administrateur
+            //L'utilisateur n'est pas administrateur, on le deconnect
             Auth::logout();
 
-            return back()->with([
-                'error' => 'You are not authorized to access this page.'
-            ]);
+            return redirect()->back()->with('error', 'Email ou mot de passe incorrect.');
         }
-
+        
         //Authentification echouée
-
-        return redirect()->route('home')->with('error', 'Email ou mot de passe incorrect.');
+        
+        return redirect()->route('home')->with([ 'error' => "Vous n'êtes pas autorisé à accéder à cette page."]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function logout(Request $request){
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
-  
+
  
 }

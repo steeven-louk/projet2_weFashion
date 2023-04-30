@@ -33,7 +33,7 @@
               @foreach ($data as $item)
               <tr>
                 <td>{{ $item->id }}</td>
-                <td>
+                <td class="name">
                   {{ $item->name }}
                 </td>
                 <td> {{ $item->price }} €</td>

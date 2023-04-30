@@ -1,0 +1,9 @@
+.name{
+   
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: horizontal;
+    overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

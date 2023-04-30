@@ -11,14 +11,14 @@
     <link rel="stylesheet" href="{{ asset('_admin/assets/vendors/css/vendor.bundle.base.css') }}">
     
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="_admin/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="{{ asset('_admin/assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
 
     <!-- End plugin css for this page -->
  
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('_admin/assets/css/style.css') }}">
     <!-- End layout styles -->
-
+    <link rel="stylesheet" href="./style.css">
     <link rel="shortcut icon" href="{{ asset('_admin/assets/images/favicon.png') }}" />
   </head>
   <body>
@@ -42,7 +42,6 @@
 
           @yield('adminContent')
 
-          <!-- partial -->
         </div>
         <!-- main-panel ends -->
       </div>
