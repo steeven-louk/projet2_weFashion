@@ -39,7 +39,10 @@
                 <td> {{ $item->statut }} </td>
                 <td> {{ $item->etat }} </td>
                 <td> {{ $item->reference }} </td>
-                <td> <div class="badge badge-outline-success">Editer</div></td>
+                <td>
+                  <a href="{{ route('edit', $item->id) }}"
+                      class="badge badge-outline-success">Editer</a>
+              </td>
                 <td><a href="{{ route('admin.produitsDelete', $item->id) }}" class="badge badge-outline-danger">supprimer</a></td>
               </tr>
               @endforeach

@@ -98,8 +98,9 @@ class AdminController extends Controller
     public function edit($id)
     {
         $Produit = produit::findOrFail($id);
-
-        return view('admin.modifierProduit', compact('Produit'));
+        $taille = Tailles::all();
+        $categories = Category::all();
+        return view('admin.modifierProduit',['Produit'=>$Produit,'taille'=>$taille,'categorie'=>$categories]);
     }
 
     /**
@@ -112,7 +113,40 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
+        $produit = Produit::findOrFail($id);
+
+     $request->validate([
+            'nom' => 'required|string|min:5|max:100',
+            'description' => 'required|string',
+            'prix' => 'required|numeric',
+            'reference' => 'required|string|size:16|unique:produits,reference,'.$produit->id,
+        ]);
+
+       if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagename = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/assets/images');
+            $image->move($destinationPath, $imagename);
+            $produit->image= $imagename;
+        }
+
+        $produit->nom = $request->nom;
+        $produit->description = $request->description;
+        $produit->prix = $request->prix;
+        $produit->categorie_id = $request->categorie;
+        $produit->taille_id = $request->taille;
+        $produit->etat = $request->etat;
+        $produit->statut = $request->statut;
+        $produit->reference = $request->reference;
+    
+        $produit->updated_at = now(); // On met à jour la date de mise à jour
+
+        $produit->save();
+     
+     return redirect()->route('edit', ['id' => $id])->with('success', 'Produit modifié avec succès.');
+}
+
+    
 
     /**
      * Remove the specified resource from storage.
@@ -123,7 +157,7 @@ class AdminController extends Controller
     public function deleteProduct($id)
     {
         //
-        $getProduct = produit::find($id);
+        $getProduct = produit::findOrFail($id);
         
         if(!$getProduct){
             return response()->json(['error'=>'Product not found'], 404);

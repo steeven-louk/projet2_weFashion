@@ -3,19 +3,19 @@
 @section('adminContent')
 
 <div class="content-wrapper">
-    @if (session()->has('message'))
+    @if (session()->has('success'))
     <div class="alert alert-success">
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      {{ session()->get('message') }}
+      {{ session()->get('success') }}
     </div>
 @endif
+
     <div class="col-12 grid-margin stretch-card">
-  
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Ajouter un produit</h4>
+            <h4 class="card-title">modifier un produit</h4>
 
-            <form action="" method="post" enctype="multipart/form-data" class="forms-sample">
+            <form action="{{ route('update',$Produit->id) }}" method="post" enctype="multipart/form-data" class="forms-sample">
                     @csrf
 
                 <div class="form-group">
@@ -33,19 +33,19 @@
               
               <div class="form-group">
                 <label for="categorie">Categorie</label>
-                <select class="form-control" name="categorie" id="categorie">
-                    {{-- @foreach ($categorie as $item)
+                  <select class="form-control" name="categorie" id="categorie">
+                    @foreach ($categorie as $item)
                         
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
-                    @endforeach --}}
+                    @endforeach
 
                 </select>
               </div>
               <div class="form-group">
                 <label>Image</label>
-                <input type="file" name="image" class=" d-block ">
+                <input type="file"  value="{{ $item->image }}" name="image" class=" d-block ">
                 <div class="input-group col-xs-12">
-                  <input type="text" name="image[]" class="form-control file-upload-info"  placeholder="Upload Image">
+                  <input type="text" name="image[]" value="{{ $item->image }}" class="form-control file-upload-info"  placeholder="Upload Image">
                   <span class="input-group-append">
                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                   </span>
@@ -54,13 +54,12 @@
               <div class="form-group">
                 <label for="tailles">Tailles</label>
                 <select class="form-control" name="taille" id="tailles">
-                    {{-- @foreach ($taille as $item)
-                        
-                    <option value="{{ $item->id }}">{{ $item->tailles }}</option>
-                    @endforeach --}}
-                    <option value="{{ $Produit->categorie_id }}">{{ $Produit->categorie_id }}</option>
-                 
-                </select>
+                  @foreach ($taille as $item)
+                      
+                  <option value="{{ $item->id }}">{{ $item->tailles }}</option>
+                  @endforeach
+               
+              </select>
               </div>
               <div class="form-group">
                 <label for="etat">Etat</label>
@@ -68,6 +67,7 @@
                         
                     <option value="{{ $Produit->etat }}">{{ $Produit->etat }}</option>
                     <option value="standard">standard</option>
+                    <option value="en solde">en solde</option>
                  
                 </select>
                 {{-- <input type="text" class="form-control" name="etat" id="etat" placeholder="Etat"> --}}
@@ -86,7 +86,7 @@
             </div>
               <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description" rows="4"></textarea>
+                <textarea class="form-control" name="description"  id="description" rows="4">{{ $Produit->description }}</textarea>
               </div>
               <button type="submit" class="btn btn-primary me-2">Submit</button>
               <button class="btn btn-dark">Cancel</button>
