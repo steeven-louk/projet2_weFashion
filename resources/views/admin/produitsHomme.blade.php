@@ -46,7 +46,7 @@
                       class="badge badge-outline-success">Editer</a>
               </td>
                 <td>
-                  <a href="{{ route('admin.produitsDelete', $item->id) }}" class="badge badge-outline-danger">supprimer</a>
+                  <a href="{{ route('admin.produitsDelete', $item->id) }}" class="badge badge-outline-danger">delete</a>
                 </td>
                 
               </tr>

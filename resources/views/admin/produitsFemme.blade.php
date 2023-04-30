@@ -30,7 +30,7 @@
                 </tr>
               </thead>
               <tbody>
-              @foreach ($produitFemme as $item)
+              @foreach ($data as $item)
               <tr>
                 <td>{{ $item->id }}</td>
                 <td> {{ $item->nom }} </td>
@@ -43,7 +43,7 @@
                   <a href="{{ route('edit', $item->id) }}"
                       class="badge badge-outline-success">Editer</a>
               </td>
-                <td><a href="{{ route('admin.produitsDelete', $item->id) }}" class="badge badge-outline-danger">supprimer</a></td>
+                <td><a href="{{ route('admin.produitsDelete', $item->id) }}" class="badge badge-outline-danger">delete</a></td>
               </tr>
               @endforeach
 
@@ -54,6 +54,6 @@
       </div>
     </div>
   </div>
-  {{ $produitFemme->links() }}
+  {{ $data->links() }}
   </div>  
 @endsection

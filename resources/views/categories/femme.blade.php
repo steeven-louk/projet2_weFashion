@@ -2,13 +2,13 @@
 
 @section('content')
  
-<section class="femme bg-danger">
-    <header class="container">
+<section class="femme">
+    <header class="px-5">
         <div class="row">
             <div class="col-md-6 left">
-                <h1 class="text-start my-auto text-uppercase">
-                    decouvrez les meilleurs produits femme du moment en solde
-                </h1>
+                <p class="text-start my-auto text-uppercase">
+                    Découvrez notre collection de produits pour femmes qui allie élégance et confort. Des vêtements et accessoires de qualité pour toutes les occasions, pour vous sentir belle et confiante dans votre look. Trouvez votre style unique parmi notre sélection tendance et à la pointe de la mode.
+                </p>
             </div>
             <div class="col-md-6 right">
                 <img src="{{ asset('./assets/banners/banner-femme.png') }}" alt="">

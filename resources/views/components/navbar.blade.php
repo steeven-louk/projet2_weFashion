@@ -10,13 +10,13 @@
      <div class="collapse navbar-collapse" id="collapsibleNavId">
          <ul class="mt-2 ml-auto navbar-nav fw-semibold text-uppercase mt-lg-0">
              <li class="nav-item">
-                 <a class="nav-link @if(Route::currentRouteName() == 'solde') active @endif"  href="{{ route('solde') }}">soldes</a>
+                 <a class="nav-link @if(Route::currentRouteName() == 'solde') active @endif"  href="{{ route('solde') }}">sales</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link @if(Route::currentRouteName() == 'homme') active @endif" href="{{ route('homme') }}">homme</a>
+                 <a class="nav-link @if(Route::currentRouteName() == 'homme') active @endif" href="{{ route('homme') }}">men</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link @if(Route::currentRouteName() == 'femme') active @endif" href="{{ route('femme') }}">femme</a>
+                 <a class="nav-link @if(Route::currentRouteName() == 'femme') active @endif" href="{{ route('femme') }}">women</a>
              </li>
          </ul>
      </div>

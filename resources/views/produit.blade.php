@@ -17,7 +17,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb fw-semibold">
               <li class="breadcrumb-item"><a class="underline" href="/">Home</a></li>
-              <li class="breadcrumb-item"><a class="underline" href="/produit">Produit</a></li>
+              {{-- <li class="breadcrumb-item"><a class="underline" href="/produit">Produit</a></li> --}}
               <li class="breadcrumb-item active" aria-current="page">{{ $product->nom }}</li>
             </ol>
           </nav>

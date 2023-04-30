@@ -23,8 +23,7 @@ class AdminController extends Controller
         $getWomenProductCount = produit::where('categorie_id',1)->count();
         $getMenProductCount = produit::where('categorie_id',2)->count();
         $getMenSoldCount = produit::where('etat','en solde')->count();
-        // dd($getMenSoldCount);
-        return view('admin.dashboard', compact('data','getWomenProductCount','getMenProductCount','getMenSoldCount'));
+        return view('admin.dashboard', compact('data','getWomenProductCount','getMenProductCount','getProdoductSoldCount'));
     }
 
     
@@ -32,15 +31,22 @@ class AdminController extends Controller
     {
         $data = produit::where('categorie_id',2)->orderBy('created_at', 'desc')->paginate(15);
         return view('admin.produitsHomme', compact('data'));
-
     }
 
     public function getFemmesProduct()
     {
-        //
-        $produitFemme = produit::where('categorie_id', 1)->orderBy('created_at', 'desc')->paginate(15);
-        return view('admin.produitsFemme', compact('produitFemme'));
+        $data = produit::where('categorie_id', 1)->orderBy('created_at', 'desc')->paginate(15);
+        return view('admin.produitsFemme', compact('data'));
     }
+
+    public function ajouterProduit()
+    {
+        $taille = Tailles::all();
+        $categories = Category::all();
+        
+        return view('admin.ajouterProduit', ['taille'=>$taille,'categorie'=>$categories]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -53,9 +59,9 @@ class AdminController extends Controller
 
         $data = new produit;
         $image = $request->file('image');
-        $imagename = time().'.'.$image->getClientOriginalExtension();
+        $imageName = time().'.'.$image->getClientOriginalExtension();
         $destinationPath = public_path('/assets/images');
-        $image->move($destinationPath, $imagename);
+        $image->move($destinationPath, $imageName);
        
 
        
@@ -65,29 +71,13 @@ class AdminController extends Controller
            $data->categorie_id = $request->categorie;
            $data->taille_id = $request->taille;
            $data->etat = $request->etat;
-           $data->image = $imagename;
+           $data->image = $imageName;
            $data->statut = $request->statut;
            $data->reference = $request->reference;
        
         $data->save();
         return redirect()->back()->with('message','le produit a été ajouter avec success');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function ajouterProduit()
-    {
-        $taille = Tailles::all();
-        $categories = Category::all();
-        
-        return view('admin.ajouterProduit', ['taille'=>$taille,'categorie'=>$categories]);
-    }
-
-
 
     /**
      * Show the form for editing the specified resource.
@@ -124,10 +114,10 @@ class AdminController extends Controller
 
        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imagename = time().'.'.$image->getClientOriginalExtension();
+            $imageName = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/assets/images');
-            $image->move($destinationPath, $imagename);
-            $produit->image= $imagename;
+            $image->move($destinationPath, $imageName);
+            $produit->image= $imageName;
         }
 
         $produit->nom = $request->nom;

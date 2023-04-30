@@ -9,6 +9,7 @@
       {{ session()->get('message') }}
     </div>
 @endif
+
     <div class="col-12 grid-margin stretch-card">
   
         <div class="card">
@@ -19,16 +20,16 @@
                     @csrf
 
                 <div class="form-group">
-                <label for="nom">nom</label>
+                <label for="nom">Name</label>
                 <input type="text" name="nom" class="form-control" id="nom" placeholder="Name">
               </div>
               <div class="form-group">
-                <label for="prix">Prix</label>
-                <input type="text" name="prix" class="form-control" id="prix" placeholder="Prix">
+                <label for="prix">Price</label>
+                <input type="text" name="prix" class="form-control" id="prix" placeholder="Price">
               </div>
               <div class="form-group">
                 <label for="reference">Reference</label>
-                <input type="text" name="reference" class="form-control" id="reference" placeholder="reference">
+                <input type="text" name="reference" class="form-control" id="reference" placeholder="Reference">
               </div>
               
               <div class="form-group">
@@ -52,7 +53,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="tailles">Tailles</label>
+                <label for="tailles">Sizes</label>
                 <select class="form-control" name="taille" id="tailles">
                     @foreach ($taille as $item)
                         
@@ -62,30 +63,28 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="etat">Etat</label>
+                <label for="etat">State</label>
                 <select class="form-control" name="etat" id="etat">
                         
                     <option value="en solde">en solde</option>
                     <option value="standard">standard</option>
                  
                 </select>
-                {{-- <input type="text" class="form-control" name="etat" id="etat" placeholder="Etat"> --}}
                 
             </div>
             <div class="form-group">
-                <label for="etat">statut</label>
+                <label for="etat">Status</label>
                 <select class="form-control" name="statut" id="statut">
                         
                     <option value="publie">publié</option>
                     <option value="non publie">non publié</option>
                  
                 </select>
-                {{-- <input type="text" class="form-control" name="etat" id="etat" placeholder="Etat"> --}}
                 
             </div>
               <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description" rows="4"></textarea>
+                <textarea class="form-control" placeholder="description" name="description" id="description" rows="4"></textarea>
               </div>
               <button type="submit" class="btn btn-primary me-2">Submit</button>
               <button class="btn btn-dark">Cancel</button>

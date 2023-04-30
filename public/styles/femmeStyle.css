@@ -1,1 +1,1 @@
-.femme header{height:30em;width:100%;position:relative;overflow:hidden}.femme header .left{display:grid;place-items:center}.femme header .right img{-o-object-fit:cover;object-fit:cover;position:relative;width:100%;bottom:0px}
+.femme header{width:100%;position:relative;overflow:hidden;background:linear-gradient(to right, #8EC2F2, #23A6F0)}.femme header .left{display:grid;place-items:center}.femme header .left p{letter-spacing:1px;line-height:35px}.femme header .right img{-o-object-fit:cover;object-fit:cover;position:relative;width:100%;bottom:0px}

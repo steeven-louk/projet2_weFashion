@@ -6,16 +6,16 @@
     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
       <span class="mdi mdi-menu"></span>
     </button>
-    <ul class="navbar-nav w-100">
+    {{-- <ul class="navbar-nav w-100">
       <li class="nav-item w-100">
         <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
           <input type="text" class="form-control" placeholder="Search products">
         </form>
       </li>
-    </ul>
+    </ul> --}}
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item dropdown d-none d-lg-block">
-        <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="{{ route('home') }}">
+        <a class="nav-link btn btn-success create-new-button text-capitalize" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="{{ route('home') }}">
           go to client
         </a>
        
@@ -73,7 +73,8 @@
       <li class="nav-item dropdown">
         <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
           <div class="navbar-profile">
-            <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+            
+            <p class="mb-0 d-none d-sm-block navbar-profile-name h5 text-uppercase">{{ Auth::user()->name }}</p>
           </div>
         </a>
        

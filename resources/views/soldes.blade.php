@@ -2,13 +2,13 @@
 
 @section('content')
 
-    <section class="bg-danger solde mb-5">
-        <header class="container">
+    <section class="solde mb-5">
+        <header class="px-5">
             <div class="row">
                 <div class="col-md-6 left">
-                    <h1 class="text-start my-auto text-uppercase">
-                        decouvrez les meilleurs produits femme du moment en solde
-                    </h1>
+                    <p class="text-start my-auto text-uppercase h4">
+                        Profitez de nos soldes exceptionnels pour découvrir nos produits de qualité à prix réduits pour hommes et femmes. Trouvez votre prochain article tendance et faites des économies tout en ajoutant une touche de style à votre garde-robe.
+                    </p>
                 </div>
                 <div class="col-md-6 right">
                     <img src="{{ asset('./assets/banners/banner-solde.png') }}" alt="banner">
@@ -26,7 +26,7 @@
                     <span>{{ $item->etat }}</span>
                 </div>
 
-                <img class="card-img-top" height="450" src="{{asset('assets/images/' . $item->image)}}" alt="">
+                <img class="card-img-top" height="450" src="{{asset('assets/images/' . $item->image)}}" alt="{{ $item->nom }}">
                 <div class="card-body">
                     <h4 class="card-title">{{ $item->nom }}</h4>
                     <p class="card-text fw-semibold">{{ $item->prix }} €</p>

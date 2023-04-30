@@ -19,16 +19,16 @@
                     @csrf
 
                 <div class="form-group">
-                <label for="nom">nom</label>
+                <label for="nom">Name</label>
                 <input type="text" name="nom" value="{{ $Produit->nom }}" class="form-control" id="nom" placeholder="Name">
               </div>
               <div class="form-group">
-                <label for="prix">Prix</label>
-                <input type="text" name="prix" class="form-control" value="{{ $Produit->prix }}" id="prix" placeholder="Prix">
+                <label for="prix">Price</label>
+                <input type="text" name="prix" class="form-control" value="{{ $Produit->prix }}" id="prix" placeholder="Price">
               </div>
               <div class="form-group">
                 <label for="reference">Reference</label>
-                <input type="text" name="reference" class="form-control"  value="{{ $Produit->reference }}" id="reference" placeholder="reference">
+                <input type="text" name="reference" class="form-control"  value="{{ $Produit->reference }}" id="reference" placeholder="Reference">
               </div>
               
               <div class="form-group">
@@ -45,14 +45,14 @@
                 <label>Image</label>
                 <input type="file"  value="{{ $item->image }}" name="image" class=" d-block ">
                 <div class="input-group col-xs-12">
-                  <input type="text" name="image[]" value="{{ $item->image }}" class="form-control file-upload-info"  placeholder="Upload Image">
+                  <input type="text" name="image[]" class="form-control file-upload-info"  placeholder="Upload Image">
                   <span class="input-group-append">
                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                   </span>
                 </div>
               </div>
               <div class="form-group">
-                <label for="tailles">Tailles</label>
+                <label for="tailles">Size</label>
                 <select class="form-control" name="taille" id="tailles">
                   @foreach ($taille as $item)
                       
@@ -62,7 +62,7 @@
               </select>
               </div>
               <div class="form-group">
-                <label for="etat">Etat</label>
+                <label for="etat">State</label>
                 <select class="form-control" name="etat" id="etat">
                         
                     <option value="{{ $Produit->etat }}">{{ $Produit->etat }}</option>
@@ -70,23 +70,22 @@
                     <option value="en solde">en solde</option>
                  
                 </select>
-                {{-- <input type="text" class="form-control" name="etat" id="etat" placeholder="Etat"> --}}
                 
             </div>
+            
             <div class="form-group">
-                <label for="etat">statut</label>
+                <label for="etat">Status</label>
                 <select class="form-control" name="statut" id="statut">
                         
                     <option value="publie">publié</option>
                     <option value="non publie">non publié</option>
                  
-                </select>
-                {{-- <input type="text" class="form-control" name="etat" id="etat" placeholder="Etat"> --}}
-                
+                </select>                
             </div>
+
               <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description"  id="description" rows="4">{{ $Produit->description }}</textarea>
+                <textarea class="form-control" name="description" placeholder="Description"  id="description" rows="4">{{ $Produit->description }}</textarea>
               </div>
               <button type="submit" class="btn btn-primary me-2">Submit</button>
               <button class="btn btn-dark">Cancel</button>

@@ -5,10 +5,16 @@
         width: 100%;
         position: relative;
         overflow: hidden;
+        background: linear-gradient(to bottom, #E74040, #E77C40);
 
         .left{
             display: grid;
-            place-items: center;
+            place-items: center; 
+
+            p{
+                letter-spacing: 1px;
+                line-height: 35px;
+            }
         }
 
         .right{

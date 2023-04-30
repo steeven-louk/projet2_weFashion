@@ -7,6 +7,18 @@
        margin: 0
    }
 
+   footer{
+    border-top: 2px solid #ccc;
+
+    .content .nav > li{
+        transition: transform .3s ease;
+
+        &:hover{
+            transform: translateX(10px);
+        }
+    }
+   }
+
    a {
        background-color: transparent
        

@@ -48,27 +48,6 @@ class produitController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\produit  $produit
@@ -82,39 +61,5 @@ class produitController extends Controller
             abort(404);
         }
         return view('produit', ['product' => $product, 'tailles'=> $tailles]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\produit  $produit
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(produit $produit)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\produit  $produit
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, produit $produit)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\produit  $produit
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(produit $produit)
-    {
-        //
     }
 }

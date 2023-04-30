@@ -9,7 +9,7 @@
       <span class="nav-link">Navigation</span>
     </li>
     <li class="nav-item menu-items">
-      <a class="nav-link @if(Route::currentRouteName() == 'dashboard') active @endif" href="{{ route('dashboard') }}"" >
+      <a class="nav-link @if(Route::currentRouteName() == 'dashboard') active @endif" href="{{ route('dashboard') }}" >
         <span class="menu-icon">
           <i class="mdi mdi-speedometer"></i>
         </span>
@@ -21,7 +21,7 @@
         <span class="menu-icon">
           <i class="mdi mdi-speedometer"></i>
         </span>
-        <span class="menu-title">homme</span>
+        <span class="menu-title">Men</span>
       </a>
     </li>
     <li class="nav-item menu-items">
@@ -29,7 +29,7 @@
         <span class="menu-icon">
           <i class="mdi mdi-speedometer"></i>
         </span>
-        <span class="menu-title">femme</span>
+        <span class="menu-title">Women</span>
       </a>
     </li>
 
@@ -38,7 +38,15 @@
         <span class="menu-icon">
           <i class="mdi mdi-playlist-play"></i>
         </span>
-        <span class="menu-title">ajouter un produit</span>
+        <span class="menu-title">Add Product</span>
+      </a>
+    </li>
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="{{ route('admin.ajouterProduit') }}">
+        <span class="menu-icon">
+          <i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i>
+        </span>
+        <span class="menu-title">Logout</span>
       </a>
     </li>
   
