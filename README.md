@@ -14,3 +14,20 @@ Ajouter un produit : en cliquant sur le bouton "Ajouter un produit", vous pouvez
 Modifier un produit : pour modifier un produit existant, cliquez sur le bouton "Modifier" à côté du produit que vous souhaitez modifier. Vous pouvez alors modifier toutes les informations du produit.
 
 Supprimer un produit : pour supprimer un produit existant, cliquez sur le bouton "Supprimer" à côté du produit que vous souhaitez supprimer. Vous serez alors invité à confirmer la suppression du produit.
+
+////SEEDER
+
+php artisan db:seed CategorieSeeder
+php artisan db:seed TaillesSeeder
+php artisan db:seed UserSeeder
+php artisan db:seed ProductSizeSeeder
+php artisan db:seed ProductSeeder
+
+
+//MIGRATION
+php artisan migrate
+
+//AUTHENTIFICATION
+
+login:: admin@admin.com
+password:: password
