@@ -92,8 +92,10 @@
                                                     class="badge badge-outline-success">Editer</a>
                                             </td>
                                             <td>
-                                                <button class="badge badge-outline-danger" data-toggle="modal"
-                                                    data-target="#deleteModal{{ $item->id }}">delete</button>
+                                                <td><a href="{{ route('admin.produitsDelete', $item->id) }}" class="badge badge-outline-danger">delete</a></td>
+
+                                                {{-- <button class="badge badge-outline-danger" data-toggle="modal"
+                                                    data-target="#deleteModal{{ $item->id }}">delete</button> --}}
                                                 <!-- Modal de confirmation de suppression -->
                                                 <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"
                                                     role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">

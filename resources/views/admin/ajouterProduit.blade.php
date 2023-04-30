@@ -74,7 +74,6 @@
                              <label for="{{ $taille->id }}">{{ $taille->name }}</label>
                                  <input type="checkbox" name="tailles[]" id="{{ $taille->id }}" value="{{ $taille->id }}">
                               @endforeach
-                        {{-- @endforeach --}}
           
                            </div>
                         </div>

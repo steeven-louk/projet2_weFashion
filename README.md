@@ -1,3 +1,6 @@
+BASE DE DONNEE : WeFashion
+
+
 I. Connexion à l'interface d'administration
 
 Pour accéder à l'interface d'administration, vous devez vous connecter en tant qu'administrateur en entrant votre nom d'utilisateur et votre mot de passe sur la page de connexion en accedant la page: /admin

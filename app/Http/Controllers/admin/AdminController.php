@@ -157,11 +157,18 @@ class AdminController extends Controller
             $produit->image = $imageName;
         }
 
+        $productSizes = [];
+
+        foreach ($request->tailles as $sizeId) {
+            $produitSizes[] = ['produit_id' => $produit->id, 'tailles_id' => $sizeId];
+            Produit_Tailles::insert($productSizes); // Ajout des tailles sélectionnées au produit
+        }
+
+
         $produit->name = $request->name;
         $produit->description = $request->description;
         $produit->price = $request->price;
         $produit->category_id = $request->categorie;
-        $produit->taille_id = $request->taille;
         $produit->state = $request->state;
         $produit->status = $request->status;
         $produit->reference = $request->reference;

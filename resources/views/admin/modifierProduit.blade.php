@@ -52,13 +52,16 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="tailles">Size</label>
-                <select class="form-control text-white" name="taille" id="tailles">
-                  @foreach ($taille as $item)
-                      
-                  <option value="{{ $item->id }}">{{ $item->tailles }}</option>
-                  @endforeach
-               
+                <label >Sizes</label>
+                           
+                <div class="d-flex gap-2 align-items-baseline">
+
+                  @foreach($taille as $taille)
+                  <label for="{{ $taille->id }}">{{ $taille->name }}</label>
+                      <input type="checkbox" name="tailles[]" id="{{ $taille->id }}" value="{{ $taille->id }}">
+                   @endforeach
+
+                </div>
               </select>
               </div>
               <div class="form-group">

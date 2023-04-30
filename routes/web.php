@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login/connection', [AuthController::class, 'connection'])->name('connection');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // AUTHENTIFICATION ROUTES
 

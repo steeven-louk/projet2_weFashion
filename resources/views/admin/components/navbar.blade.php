@@ -9,7 +9,7 @@
 
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item dropdown d-none d-lg-block">
-        <a class="nav-link btn btn-success create-new-button text-capitalize" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="{{ route('home') }}">
+        <a class="nav-link btn btn-success create-new-button text-capitalize"  href="{{ route('home') }}">
           go to client
         </a>
        
