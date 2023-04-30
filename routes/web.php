@@ -1,11 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\produitController;
+
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\auth\LoginController;
-use App\Http\Controllers\produitController;
-use Illuminate\Support\Facades\Route;
-
-
 
 // CLIENT ROUTES
 
@@ -21,9 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 // AUTHENTIFICATION ROUTES
 
-    Route::get('/login', [AuthController::class, 'index'])->name('login');
-    Route::post('/login/connection', [AuthController::class, 'connection'])->name('connection');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login/connection', [LoginController::class, 'connection'])->name('connection');
 
 // AUTHENTIFICATION ROUTES
 
@@ -42,6 +40,8 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/admin/modifierProduit/{id}', [AdminController::class, 'getEditPage'])->name('edit'); //affichage de la page de mise a jour
     Route::post('/admin/create}', [AdminController::class, 'addProduct'])->name('addProduct'); //fonction d'ajout de produit
     Route::post('/admin/updateProduit/{id}', [AdminController::class, 'updateProduct'])->name('update'); //mise a jour du produit
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
     // CRUD
 
 });
