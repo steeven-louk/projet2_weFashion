@@ -13,12 +13,12 @@ class produit extends Model
 
     protected $fillable = [
         'id',
-        'nom',
+        'name',
         'description',
-        'prix',
+        'price',
         'image',
-        'statut',
-        'etat',
+        'status',
+        'state',
         'reference'
     ];
 
@@ -26,7 +26,7 @@ class produit extends Model
       return  $this->belongsTo(Category::class);
     }
 
-    public function tailles(){
-       return $this->belongsTo(Tailles::class);
+    public function size(){
+       return $this->belongsToMany(Tailles::class);
     }
 }

@@ -6,7 +6,9 @@ use App\Models\produit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Produit_Tailles;
 use App\Models\Tailles;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -20,31 +22,31 @@ class AdminController extends Controller
     public function index()
     {
         $data = produit::paginate(15)->all();
-        $getWomenProductCount = produit::where('categorie_id',1)->count();
-        $getMenProductCount = produit::where('categorie_id',2)->count();
-        $getMenSoldCount = produit::where('etat','en solde')->count();
+        $getWomenProductCount = produit::where('category_id',1)->count();
+        $getMenProductCount = produit::where('category_id',2)->count();
+        $getProdoductSoldCount = produit::where('state','en solde')->count();
         return view('admin.dashboard', compact('data','getWomenProductCount','getMenProductCount','getProdoductSoldCount'));
     }
 
     
     public function getHommesProduct()
     {
-        $data = produit::where('categorie_id',2)->orderBy('created_at', 'desc')->paginate(15);
+        $data = produit::where('category_id',2)->orderBy('created_at', 'desc')->paginate(15);
         return view('admin.produitsHomme', compact('data'));
     }
 
     public function getFemmesProduct()
     {
-        $data = produit::where('categorie_id', 1)->orderBy('created_at', 'desc')->paginate(15);
+        $data = produit::where('category_id', 1)->orderBy('created_at', 'desc')->paginate(15);
         return view('admin.produitsFemme', compact('data'));
     }
 
     public function ajouterProduit()
     {
-        $taille = Tailles::all();
+        $size = Tailles::all();
         $categories = Category::all();
         
-        return view('admin.ajouterProduit', ['taille'=>$taille,'categorie'=>$categories]);
+        return view('admin.ajouterProduit', ['taille'=>$size,'categorie'=>$categories]);
     }
 
 
@@ -54,27 +56,54 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {
+    {//nom add product
    
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            // 'categorie_id' => 'required',
+            'price' => 'required|numeric|min:10',
+            'description' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'tailles' => 'required|array',
+            'tailles.*' => 'integer|exists:tailles,id'
+        ]);
 
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+    
         $data = new produit;
+
         $image = $request->file('image');
         $imageName = time().'.'.$image->getClientOriginalExtension();
         $destinationPath = public_path('/assets/images');
         $image->move($destinationPath, $imageName);
-       
 
-       
-           $data->nom = $request->nom;
+        // Création du produit
+ 
+
+    // Ajout des tailles sélectionnées au produit
+
+    // Redirection vers la page de détails du produit
+
+           $data->name = $request->name;
            $data->description = $request->description;
-           $data->prix = $request->prix;
-           $data->categorie_id = $request->categorie;
-           $data->taille_id = $request->taille;
-           $data->etat = $request->etat;
+           $data->price = $request->price;
+           $data->category_id = $request->categorie;
+           $data->state = $request->state;
            $data->image = $imageName;
-           $data->statut = $request->statut;
+           $data->status = $request->status;
            $data->reference = $request->reference;
-       
+
+           $productSizes = [];
+    foreach ($request->tailles as $sizeId) {
+        $produitSizes[] = ['produit_id' => $data->id, 'tailles_id' => $sizeId];
+        Produit_Tailles::insert($productSizes);
+    }
+
         $data->save();
         return redirect()->back()->with('message','le produit a été ajouter avec success');
     }
@@ -106,9 +135,9 @@ class AdminController extends Controller
         $produit = Produit::findOrFail($id);
 
      $request->validate([
-            'nom' => 'required|string|min:5|max:100',
+            'name' => 'required|string|min:5|max:100',
             'description' => 'required|string',
-            'prix' => 'required|numeric',
+            'price' => 'required|numeric',
             'reference' => 'required|string|size:16|unique:produits,reference,'.$produit->id,
         ]);
 
@@ -120,13 +149,13 @@ class AdminController extends Controller
             $produit->image= $imageName;
         }
 
-        $produit->nom = $request->nom;
+        $produit->name = $request->name;
         $produit->description = $request->description;
-        $produit->prix = $request->prix;
-        $produit->categorie_id = $request->categorie;
+        $produit->price = $request->price;
+        $produit->category_id = $request->categorie;
         $produit->taille_id = $request->taille;
-        $produit->etat = $request->etat;
-        $produit->statut = $request->statut;
+        $produit->state = $request->state;
+        $produit->status = $request->status;
         $produit->reference = $request->reference;
     
         $produit->updated_at = now(); // On met à jour la date de mise à jour

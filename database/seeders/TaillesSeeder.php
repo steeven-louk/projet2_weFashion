@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Tailles;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TaillesSeeder extends Seeder
 {
@@ -14,24 +15,19 @@ class TaillesSeeder extends Seeder
      */
     public function run()
     {
-        //
-        Tailles::create([
-            'tailles'=>'XS'
-        ]);
-        Tailles::create([
-            'tailles'=>'S'
-        ]);
-        Tailles::create([
-            'tailles'=>'M'
+    $sizes = [
+        'XS',
+        'S',
+        'M',
+        'L',
+        'XL',
+    ];
 
+    foreach ($sizes as $size) {
+        DB::table('sizes')->insert([
+            'name' => $size
         ]);
-        Tailles::create([
-            'tailles'=>'L'
+    }
 
-        ]);
-        Tailles::create([
-            'tailles'=>'XL'
-
-        ]);
     }
 }

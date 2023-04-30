@@ -15,17 +15,15 @@ class CreateProduitsTable extends Migration
     {
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
-            $table->string('nom', '100');
+            $table->string('name', '100');
             $table->text('description');
-            $table->decimal('prix','8','2');
+            $table->decimal('price','8','2');
             $table->string('image');
-            $table->enum('statut',['publié','non publié']);
-            $table->enum('etat',['en solde','standard']);
+            $table->enum('status',['publié','non publié']);
+            $table->enum('state',['en solde','standard']);
             $table->string('reference', 16);
-            $table-> unsignedBigInteger('categorie_id');
-            $table-> foreign('categorie_id')->references('id')->on('categories');
-            $table-> unsignedBigInteger('taille_id');
-            $table-> foreign('taille_id')->references('id')->on('tailles');
+            $table-> unsignedBigInteger('category_id');
+            $table-> foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

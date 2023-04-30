@@ -20,11 +20,11 @@
 
                 <div class="form-group">
                 <label for="nom">Name</label>
-                <input type="text" name="nom" value="{{ $Produit->nom }}" class="form-control" id="nom" placeholder="Name">
+                <input type="text" name="name" value="{{ $Produit->nom }}" class="form-control" id="nom" placeholder="Name">
               </div>
               <div class="form-group">
                 <label for="prix">Price</label>
-                <input type="text" name="prix" class="form-control" value="{{ $Produit->prix }}" id="prix" placeholder="Price">
+                <input type="text" name="price" class="form-control" value="{{ $Produit->prix }}" id="prix" placeholder="Price">
               </div>
               <div class="form-group">
                 <label for="reference">Reference</label>
@@ -63,7 +63,7 @@
               </div>
               <div class="form-group">
                 <label for="etat">State</label>
-                <select class="form-control" name="etat" id="etat">
+                <select class="form-control" name="state" id="etat">
                         
                     <option value="{{ $Produit->etat }}">{{ $Produit->etat }}</option>
                     <option value="standard">standard</option>
@@ -75,7 +75,7 @@
             
             <div class="form-group">
                 <label for="etat">Status</label>
-                <select class="form-control" name="statut" id="statut">
+                <select class="form-control" name="status" id="statut">
                         
                     <option value="publie">publié</option>
                     <option value="non publie">non publié</option>

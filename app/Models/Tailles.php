@@ -9,9 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Tailles extends Model
 {
     use HasFactory;
-    protected $fillable =['tailles'];
+    protected $fillable =['name'];
 
     public function produit(){
-      return  $this->hasMany(produit::class);
+      return $this->belongsToMany(Product::class);
+
     }
 }

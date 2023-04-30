@@ -20,11 +20,11 @@
               <thead>
                 <tr>
                   <th>id</th>
-                  <th>Nom </th>
-                  <th> Prix </th>
+                  <th>Name </th>
+                  <th> Price </th>
                   <th> Image </th>
-                  <th> Statut </th>
-                  <th> Etat </th>
+                  <th> Status </th>
+                  <th> State </th>
                   <th> Reference </th>
                   <th> Action</th>
                 </tr>
@@ -34,12 +34,12 @@
               <tr>
                 <td>{{ $item->id }}</td>
                 <td>
-                  {{ $item->nom }}
+                  {{ $item->name }}
                 </td>
-                <td> {{ $item->prix }} €</td>
+                <td> {{ $item->price }} €</td>
                 <td> {{ $item->image }}</td>
-                <td> {{ $item->statut }} </td>
-                <td> {{ $item->etat }} </td>
+                <td> {{ $item->status }} </td>
+                <td> {{ $item->state }} </td>
                 <td> {{ $item->reference }} </td>
                 <td>
                   <a href="{{ route('edit', $item->id) }}"

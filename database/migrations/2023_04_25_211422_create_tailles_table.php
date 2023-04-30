@@ -13,9 +13,9 @@ class CreateTaillesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tailles', function (Blueprint $table) {
+        Schema::create('sizes', function (Blueprint $table) {
             $table->id();
-            $table->string('tailles')->unique()->require();
+            $table->string('name')->unique()->require();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateTaillesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tailles');
+        Schema::dropIfExists('sizes');
     }
 }
