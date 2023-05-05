@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Tailles;
+use App\Models\Sizes;
 use App\Models\Category;
+use App\Models\ProduitTailles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -26,7 +27,9 @@ class produit extends Model
       return  $this->belongsTo(Category::class);
     }
 
-    public function size(){
-       return $this->belongsToMany(Tailles::class);
+    public function sizes()
+    {
+        return $this->hasMany(ProduitTailles::class);
     }
+ 
 }

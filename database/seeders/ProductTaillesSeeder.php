@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\produit;
 use App\Models\Sizes;
-use App\Models\Tailles;
+use App\Models\produit;
 use Illuminate\Database\Seeder;
 
-class ProductSizeSeeder extends Seeder
+class ProductTaillesSeeder extends Seeder
 {
     /**
      * Run the database seeds.

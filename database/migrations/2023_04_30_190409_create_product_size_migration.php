@@ -13,10 +13,10 @@ class CreateProductSizeMigration extends Migration
      */
     public function up()
     {
-        Schema::create('product_size', function (Blueprint $table) {
+        Schema::create('produit_tailles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('produit_id');
-            $table->unsignedBigInteger('size_id');
+            $table->unsignedBigInteger('tailles_id');
                     
             $table->foreign('produit_id')->references('id')->on('produits')->onDelete('cascade');
             $table->foreign('tailles_id')->references('id')->on('sizes')->onDelete('cascade');
@@ -31,6 +31,6 @@ class CreateProductSizeMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_size_migration');
+        Schema::dropIfExists('produit_Tailles');
     }
 }

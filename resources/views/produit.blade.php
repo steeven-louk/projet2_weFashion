@@ -1,7 +1,7 @@
  @extends('layouts.clientLayout')
 
  @section('content')
-<section class="ProductDetail">
+<section class="ProductDetail bg-dark">
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb fw-semibold">
@@ -23,8 +23,8 @@
                     
                     <select name="size">
                         <option>Size</option>
-                        @foreach ($tailles as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @foreach ($product->sizes as $item)
+                            <option class="text-dark" value="{{ $item->id }}">{{ $item }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -32,7 +32,6 @@
         </div>
     </div>
 </section>
-    @include('components.footer')
 </body>
 </html>
 

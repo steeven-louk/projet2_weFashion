@@ -57,13 +57,6 @@
                         <div class="form-group">
                             <label>Image</label>
                             <input type="file" name="image" class=" d-block ">
-                            <div class="input-group col-xs-12">
-                                <input type="text" name="image[]" class="form-control file-upload-info"
-                                    placeholder="Upload Image">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
                         </div>
                         <div class="form-group text-white">
                             <label >Sizes</label>
@@ -101,8 +94,7 @@
                             <label for="description">Description</label>
                             <textarea class="form-control text-white" placeholder="description" name="description" id="description" rows="4"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
-                        <button class="btn btn-dark">Cancel</button>
+                        <button type="submit" class="btn btn-primary float-end me-2">Submit</button>
                     </form>
                 </div>
             </div>

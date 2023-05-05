@@ -20,8 +20,8 @@ Supprimer un produit : pour supprimer un produit existant, cliquez sur le bouton
 php artisan db:seed CategorieSeeder
 php artisan db:seed TaillesSeeder
 php artisan db:seed UserSeeder
-php artisan db:seed ProductSizeSeeder
 php artisan db:seed ProductSeeder
+php artisan db:seed ProductTaillesSeeder
 
 
 //MIGRATION

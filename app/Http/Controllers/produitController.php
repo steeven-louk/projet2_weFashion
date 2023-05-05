@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\produit;
-use App\Models\Tailles;
+use App\Models\Sizes;
 use Illuminate\Http\Request;
 
 class produitController extends Controller
@@ -68,14 +68,13 @@ class produitController extends Controller
     {
         //recuperation d'un seul produit
        $product=  produit::findOrFail($id);
-       $sizes = $product->size()->get();// recuperation des tailles du produit
-
-       
+       $size = $product->sizes()->get();// recuperation des tailles du produit
 
        //verifier si le produit existe
         if(!$product){
             abort(404);
         }
-        return view('produit', ['product' => $product, 'tailles'=> $sizes]);
+        return view('produit', ['product' => $product, 'size'=>$size]);
     }
+
 }

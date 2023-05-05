@@ -20,11 +20,11 @@
 
                 <div class="form-group">
                 <label for="nom">Name</label>
-                <input type="text" name="name" value="{{ $Produit->nom }}" class="form-control text-white" id="nom" placeholder="Name">
+                <input type="text" name="name" value="{{ $Produit->name }}" class="form-control text-white" id="nom" placeholder="Name">
               </div>
               <div class="form-group">
                 <label for="prix">Price</label>
-                <input type="text" name="price" class="form-control text-white" value="{{ $Produit->prix }}" id="prix" placeholder="Price">
+                <input type="text" name="price" class="form-control text-white" value="{{ $Produit->price }}" id="prix" placeholder="Price">
               </div>
               <div class="form-group">
                 <label for="reference">Reference</label>
@@ -41,15 +41,15 @@
 
                 </select>
               </div>
+              <div class="form-group  d-flex flex-column">
+                <label>Old Image</label>
+
+                <img src="{{ asset('assets/images/' .$Produit->image) }}" height="100" width="80" alt="old image">
+              </div>
               <div class="form-group">
                 <label>Image</label>
-                <input type="file"  value="{{ $item->image }}" name="image" class=" d-block ">
-                <div class="input-group col-xs-12">
-                  <input type="text" name="image[]" class="form-control file-upload-info"  placeholder="Upload Image">
-                  <span class="input-group-append">
-                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                  </span>
-                </div>
+                <input type="file"  value="{{ $Produit->image }}" name="image" class="form-control d-block ">
+           
               </div>
               <div class="form-group">
                 <label >Sizes</label>
@@ -68,7 +68,7 @@
                 <label for="etat">State</label>
                 <select class="form-control text-white" name="state" id="etat">
                         
-                    <option value="{{ $Produit->etat }}">{{ $Produit->etat }}</option>
+                    <option value="{{ $Produit->state }}">{{ $Produit->state }}</option>
                     <option value="standard">standard</option>
                     <option value="en solde">en solde</option>
                  
@@ -90,8 +90,7 @@
                 <label for="description">Description</label>
                 <textarea class="form-control text-white" name="description" placeholder="Description"  id="description" rows="4">{{ $Produit->description }}</textarea>
               </div>
-              <button type="submit" class="btn btn-primary me-2">Submit</button>
-              <button class="btn btn-dark">Cancel</button>
+              <button type="submit" class="btn btn-primary me-2 float-end">Submit</button>
             </form>
           </div>
         </div>

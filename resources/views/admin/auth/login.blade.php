@@ -35,11 +35,11 @@
 
                   <div class="form-group">
                     <label>Email *</label>
-                    <input type="email" value="{{ old ('email') }}" name="email" required class="form-control p_input">
+                    <input type="email" value="{{ old ('email') }}" name="email" required class="text-white form-control p_input">
                   </div>
                   <div class="form-group">
                     <label>Password *</label>
-                    <input type="password" name="password" required class="form-control p_input">
+                    <input type="password" name="password" required class="text-white form-control p_input">
                   </div>
    
                   <div class="text-center">

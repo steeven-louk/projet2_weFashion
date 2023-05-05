@@ -5,8 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\produit;
-use App\Models\Produit_Tailles;
-use App\Models\Tailles;
+use App\Models\ProduitTailles;
+use App\Models\Sizes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,11 +20,11 @@ class AdminController extends Controller
 
     public function index()
     {
-        
-        $data = produit::paginate(15)->all();//recuperation de tout les produits de la base de donnée
-        $getWomenProductCount = produit::where('category_id', 1)->count();//recuperation du nombre de produit pour femme
-        $getMenProductCount = produit::where('category_id', 2)->count();//recuperation du nombre de produit pour homme
-        $getProductSoldCount = produit::where('state', 'en solde')->count();//recuperation du nombre de produit en solde
+
+        $data = produit::paginate(15)->all(); //recuperation de tout les produits de la base de donnée
+        $getWomenProductCount = produit::where('category_id', 1)->count(); //recuperation du nombre de produit pour femme
+        $getMenProductCount = produit::where('category_id', 2)->count(); //recuperation du nombre de produit pour homme
+        $getProductSoldCount = produit::where('state', 'en solde')->count(); //recuperation du nombre de produit en solde
 
         return view('admin.dashboard', compact('data', 'getWomenProductCount', 'getMenProductCount', 'getProductSoldCount'));
     }
@@ -46,12 +46,11 @@ class AdminController extends Controller
     public function getAddPage()
     {
         //recuperation des tailles et categoris
-        $size = Tailles::all();
+        $size = Sizes::all();
         $categories = Category::all();
 
         return view('admin.ajouterProduit', ['taille' => $size, 'categorie' => $categories]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -66,8 +65,6 @@ class AdminController extends Controller
             'price' => 'required|numeric|min:10',
             'description' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'tailles' => 'required|array',
-            'tailles.*' => 'integer|exists:tailles,id',
         ]);
 
         //verification des erreur de validation
@@ -78,12 +75,11 @@ class AdminController extends Controller
                 ->withInput();
         }
 
-        
         $image = $request->file('image');
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $destinationPath = public_path('/assets/images');
         $image->move($destinationPath, $imageName);
-        
+
         // Création du produit
         $data = new produit;
 
@@ -96,20 +92,13 @@ class AdminController extends Controller
         $data->status = $request->status;
         $data->reference = $request->reference;
 
-        $productSizes = [];
-
-        foreach ($request->tailles as $sizeId) {
-            $produitSizes[] = ['produit_id' => $data->id, 'tailles_id' => $sizeId];
-            Produit_Tailles::insert($productSizes); // Ajout des tailles sélectionnées au produit
-        }
+      
 
         $data->save(); //sauvegarde du produit
 
-        // Redirection vers la page de détails du produit
-        return redirect()->back()->with('message', 'le produit a été ajouter avec success');
+        //Redirection vers la page de détails du produit
+        return redirect()->route('dashboard')->with('message', 'le produit a été ajouter avec success');
     }
-
-
 
     /**
      * Show the form for editing the specified resource.
@@ -121,12 +110,10 @@ class AdminController extends Controller
     {
 
         $product = produit::findOrFail($id); //recuperation d'un seul produit
-        $size = Tailles::all(); //recuperation de toute les tailles
+        $size = Sizes::all(); //recuperation de toute les tailles
         $categories = Category::all(); //recuperation de toutes les categories
         return view('admin.modifierProduit', ['Produit' => $product, 'taille' => $size, 'categorie' => $categories]);
     }
-
-
 
     /**
      * Update the specified resource in storage.
@@ -161,9 +148,8 @@ class AdminController extends Controller
 
         foreach ($request->tailles as $sizeId) {
             $produitSizes[] = ['produit_id' => $produit->id, 'tailles_id' => $sizeId];
-            Produit_Tailles::insert($productSizes); // Ajout des tailles sélectionnées au produit
+            ProduitTailles::insert($productSizes); // Ajout des tailles sélectionnées au produit
         }
-
 
         $produit->name = $request->name;
         $produit->description = $request->description;
@@ -192,8 +178,8 @@ class AdminController extends Controller
         $getProduct = produit::findOrFail($id);
 
         //verifier si l'image existe puis la supprimer
-        if(file_exists(public_path('/assets/images/'.$getProduct->image))){
-            unlink(public_path('/assets/images/'.$getProduct->image));
+        if (file_exists(public_path('/assets/images/' . $getProduct->image))) {
+            unlink(public_path('/assets/images/' . $getProduct->image));
         }
 
         //verifier si le produit existe
